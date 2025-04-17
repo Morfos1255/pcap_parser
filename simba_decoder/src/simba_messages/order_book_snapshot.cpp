@@ -11,20 +11,8 @@ std::unique_ptr<DecodedSimbaBody> OrderBookSnapshotMessage::Decode(std::vector<s
 
     auto& snapshot = message->order_book_snapshot;
 
-    std::memcpy(&snapshot.security_id, &(*it), sizeof(snapshot.security_id));
-    it += sizeof(snapshot.security_id);
-
-    std::memcpy(&snapshot.last_msg_seq_num_processed, &(*it), sizeof(snapshot.last_msg_seq_num_processed));
-    it += sizeof(snapshot.last_msg_seq_num_processed);
-
-    std::memcpy(&snapshot.rpt_seq, &(*it), sizeof(snapshot.rpt_seq));
-    it += sizeof(snapshot.rpt_seq);
-
-    std::memcpy(&snapshot.exchange_trading_session_id, &(*it), sizeof(snapshot.exchange_trading_session_id));
-    it += sizeof(snapshot.exchange_trading_session_id);
-
-    std::memcpy(&snapshot.no_md_entries, &(*it), sizeof(snapshot.no_md_entries));
-    it += sizeof(snapshot.no_md_entries);
+    std::memcpy(&snapshot, &(*it), order_book_size);
+    it += order_book_size;
 
     snapshot.md_entries.resize(snapshot.no_md_entries.num_in_group);
 
