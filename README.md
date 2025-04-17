@@ -2,9 +2,12 @@
 Parsing pcap files and decode data by the SIMBA MOEX specification
 ## Building
 ```console
-mkdir build && cd build && cmake .. && make -j
+mkdir cmake-build && cd build && cmake .. && make -j
 ```
-
+Or just use:
+```console
+./run.sh <path/to/folder_with_pcaps> <path/to/output.jsonl>
+```
 ## Usage
 Use it like this
 ```console
@@ -14,3 +17,4 @@ For example:
 ```console
 ./pcap_main ../pcaps_folder ../output.jsonl
 ```
+
