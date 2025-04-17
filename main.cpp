@@ -65,12 +65,11 @@ int main(int argc, char* argv[])
                 ++total_packet_count;
                 out << '[';
                 auto simba_messages = Decode(packet->data);
+                auto separator = "";
                 for (auto&& simba_message : simba_messages) {
                     if (simba_message) {
-                        out << simba_message->Dump();
-                        if (simba_messages.size() > 1) {
-                            out << ',';
-                        }
+                        out << separator << simba_message->Dump();
+                        separator = ",";
                     }
                 }
                 out << "]\n";
